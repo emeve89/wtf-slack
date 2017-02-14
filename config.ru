@@ -1,9 +1,3 @@
-require 'sinatra'
-
-post '/' do
-  term = params.fetch('text').strip
-
-  term
-end
+require './app'
 
 run Sinatra::Application
