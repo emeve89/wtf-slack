@@ -6,8 +6,11 @@ module WTF
       end
     end
 
+    BASE_URL = "http://www.urbandictionary.com/define.php?".freeze
+
     def call(term)
-      #TODO: scrape vmware's WTF site and return definition
-    end
+      html_response = HTTParty.get("#{BASE_URL}term=#{term}")
+      parsed_response = Nokogiri::HTML(html_response)
+      parsed_response.css(".meaning").first.text.strip
   end
 end
